@@ -1350,3 +1350,148 @@ chgrp [options] newgroup filename
      chgrp newgroup myfile.txt && chmod g+rw myfile.txt
      ```
  
+
+
+ # UNIT 3 PART-2
+
+ 
+
+1. **Shell Variables:**
+   Shell variables are used to store data within a shell script. You can declare and assign values to variables using the `=` operator. Here's an example:
+
+   ```bash
+   my_variable="Hello, World!"
+   echo $my_variable
+   ```
+
+   In this example, we've assigned the string "Hello, World!" to the variable `my_variable` and then printed its value using `echo`.
+
+2. **The Export Command:**
+   The `export` command is used to make a variable available to child processes or subshells. For instance:
+
+   ```bash
+   export my_var="Exported Variable"
+   bash   # Start a new subshell
+   echo $my_var  # This will still print "Exported Variable"
+   exit  # Exit the subshell
+   ```
+
+   The variable `my_var` is exported and can be accessed in the subshell created by `bash`.
+
+3. **The Read Command:**
+   The `read` command is used to read input from the user and store it in a variable. For example:
+
+   ```bash
+   echo -n "Enter your name: "
+   read username
+   echo "Hello, $username!"
+   ```
+
+   This script prompts the user for their name and then prints a greeting using the entered name.
+
+4. **Positional Parameters:**
+   Positional parameters are used to access arguments passed to a shell script. For instance:
+
+   ```bash
+   echo "The script name is: $0"
+   echo "The first argument is: $1"
+   echo "The second argument is: $2"
+   echo "The number of arguments is: $#"
+   ```
+
+   If you run the script with arguments like `./script.sh arg1 arg2`, it will display the script name, the first argument, and the second argument.
+
+5. **The $? Variable (Exit Status):**
+   `$?` stores the exit status of the last executed command. A value of 0 indicates success, while non-zero values indicate an error. For example:
+
+   ```bash
+   ls /nonexistent_directory  # This will result in an error
+   if [ $? -eq 0 ]; then
+       echo "Command succeeded."
+   else
+       echo "Command failed with exit status $?"
+   fi
+   ```
+
+6. **The Set Command:**
+   The `set` command is used to modify shell options and positional parameters. For example, to set or unset options:
+
+   ```bash
+   set -x  # Enable debugging
+   echo "This is a debug message."
+   set +x  # Disable debugging
+   ```
+
+7. **The Exit Command:**
+   The `exit` command is used to terminate a shell script or session and return an exit status code. For example:
+
+   ```bash
+   echo "Script is about to exit."
+   exit 2  # Exiting with a non-zero status code (indicating an error)
+   ```
+
+8. **The Expr Command (Performing Integer Arithmetic):**
+   The `expr` command is used for integer arithmetic and expression evaluation. For example:
+
+   ```bash
+   result=$(expr 5 + 3)
+   echo "5 + 3 = $result"
+   ```
+
+9. **Real Arithmetic in Shell Programs:**
+   Shell scripts typically handle integer arithmetic. For real number arithmetic, you might need external tools like `bc`, or use a different scripting language like Python.
+
+10. **The Here Document (<<):**
+    A here document is a way to include multi-line text within a script. For example, creating a text file:
+
+   ```bash
+   cat <<EOF > myfile.txt
+   This is a
+   multiline
+   text block.
+   EOF
+   ```
+
+11. **The Sleep Command:**
+    `sleep` is used to pause script execution for a specified number of seconds:
+
+   ```bash
+   echo "Start of script"
+   sleep 3
+   echo "End of script"
+   ```
+
+   This will introduce a 3-second delay between the two echo statements.
+
+12. **The Script Command:**
+    The `script` command is used to create a typescript of a terminal session:
+
+   ```bash
+   script my_session.log
+   echo "This is a recorded session."
+   exit
+   ```
+
+   This creates a log of everything that happens in the terminal session.
+
+13. **The Eval Command:**
+    `eval` is used to execute shell commands stored in a string. For example:
+
+   ```bash
+   command="echo Hello, World!"
+   eval $command
+   ```
+
+   This will execute the command stored in the `command` variable.
+
+14. **The Exec Command:**
+    `exec` is used to replace the current shell process with a new command. For example:
+
+   ```bash
+   exec ls  # Replaces the shell with the 'ls' command
+   echo "This will not be executed."
+   ```
+
+   In this example, the shell is replaced by the `ls` command, and the echo statement is not executed.
+
+ 
